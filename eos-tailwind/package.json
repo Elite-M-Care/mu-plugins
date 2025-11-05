@@ -1,0 +1,21 @@
+{
+  "name": "eos-tailwind",
+  "version": "1.0.0",
+  "description": "Master Tailwind CSS design system for EOS plugins",
+  "scripts": {
+    "build": "tailwindcss -i ./src/tailwind.css -o ./dist/tailwind.css",
+    "build:prod": "tailwindcss -i ./src/tailwind.css -o ./dist/tailwind.css --minify",
+    "watch": "tailwindcss -i ./src/tailwind.css -o ./dist/tailwind.css --watch"
+  },
+  "keywords": [
+    "tailwind",
+    "css",
+    "wordpress",
+    "eos"
+  ],
+  "author": "EOS Development Team",
+  "license": "GPL-2.0+",
+  "devDependencies": {
+    "tailwindcss": "^3.4.18"
+  }
+}
