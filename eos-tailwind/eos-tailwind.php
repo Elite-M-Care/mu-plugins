@@ -58,8 +58,23 @@ add_action( 'wp_enqueue_scripts', 'eos_tailwind_enqueue_styles', 5 );
 
 /**
  * Enqueue Tailwind CSS in admin area.
+ *
+ * Excludes Gravity Forms pages to prevent style conflicts.
  */
 function eos_tailwind_enqueue_admin_styles() {
+    // Get current screen
+    $screen = get_current_screen();
+
+    // Exclude Gravity Forms pages
+    if ( $screen && (
+        strpos( $screen->id, 'gf_' ) === 0 ||
+        strpos( $screen->id, 'gravityforms' ) !== false ||
+        strpos( $screen->base, 'gf_' ) === 0 ||
+        isset( $_GET['page'] ) && strpos( $_GET['page'], 'gf_' ) === 0
+    ) ) {
+        return; // Don't load Tailwind on Gravity Forms pages
+    }
+
     $css_file = EOS_TAILWIND_PATH . 'dist/tailwind.css';
 
     if ( file_exists( $css_file ) ) {
